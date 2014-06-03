@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>login</title>
+<link rel="stylesheet" href="css/custom_pagestyle.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+        	js.src="//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+
+        // Init the SDK upon load
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '720504847971251', // App ID
+               //channelUrl : 'https://www.facebook.com/pages/GyanSha-Infotech/1482455901974024',
+               //channelUrl: '//' + window.location.hostname + '/channel', // Path to your   Channel File
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+			
+			
+            FB.login(function(response) {
+                if (response.authResponse) {
+					
+                	//System.out.println("Login");
+                	// The person logged into your app
+                } else {
+                    // The person cancelled the login dialog
+                }
+            });
+			
+			
+            // listen for and handle auth.statusChange events
+            FB.Event.subscribe('auth.statusChange', function (response) {
+                if (response.authResponse) {
+                    // user has auth'd your app and is logged into Facebook
+                    FB.api('/me', function (me) {
+                       /* if (me.name) {
+                            document.getElementById('auth-displayname').innerHTML = me.name;
+                        }
+                        if (me.id) {
+                            document.getElementById('FBId').innerHTML = me.id;
+                            document.getElementById('Pic').src = 'http://graph.facebook.com/' + me.id + '/Picture';
+                            document.getElementById('Pic').alt = me.name;
+                            document.getElementById('Pic').title = me.name;
+                        }
+
+                        if (me.email) {
+                            document.getElementById("DisplayEmail").innerHTML = me.email;
+                        }
+                        if (me.gender) {
+                            document.getElementById("Gender").innerHTML = me.gender;
+                        }
+                        if (me.birthday) {
+                            document.getElementById("DOB").innerHTML = me.birthday;
+                        }*/
+
+                    })
+                } else {
+                }
+            });
+           // $("#auth-logoutlink").click(function () { FB.logout(function () { window.location.reload(); }); });
+        }
+		
+		
+		
+</script>
+</head>
+
+<body>
+<table id="outer0" cellpadding="0" cellspacing="0" align="center">
+    <tr><td id="outer0_td1">
+        <table class="c_outer0" cellpadding="0" cellspacing="0" align="center">   		
+            <tr><td>
+                <table id="login_table" align="center">
+                 <tr></td><td><td id="crt_account_td">  
+                    <label for="" class="c_label"><u><b>Login (Already A Member)</b></u></label>  
+                 </td></tr>
+    			<form name="login_form" action="" method="post">
+                 <tr><td>
+                    <label for="username" class="c_label">Username</label></td><td>
+                    <input type="text" class="c_text" id="username" name="username" value="" placeholder="Username">
+                 </td></tr>
+                 <tr><td>
+                    <label for="pass" class="c_label">Password</label></td><td>
+                    <input type="password" class="c_text" id="pass" name="pass" value="">
+                 </td></tr>
+                 <tr></td><td><td id="signin_button">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" class="c_button" value="Login" id="submit" name="Sign In">
+                    <input type="reset" class="c_button" value="Reset" id="reset" name="reset">
+                 </td></tr>
+                </table>
+            </td></tr>
+                <tr><td id="fblogin_td"> 
+                    <div class="fb-login-button" autologoutlink="false" scope="email,user_checkins" align="center">Login  with Facebook</div>
+                </td></tr> 
+        </table>
+       </form> 
+    </td>
+    <td id="outer0_td2"> 
+            
+    	<form name="signup_form" action="" method="post">
+        <table class="c_outer0" >
+            <tr><td></td><td class="login_account_td">
+            <label for="" class="c_label"><u><b>Create Account New User</b></u></label>
+            </td></tr>
+            <tr><td class="gyansha_td">
+                <label for="username" class="c_label">Username</label></td><td>
+                <input type="text" class="c_text" id="username" name="username" value="" placeholder="Username">
+            </td></tr><tr><td>
+                <label for="email" class="c_label">E mail</label></td><td>
+                <input type="text" class="c_text" id="email" name="email" value="" placeholder="Email">
+            </td></tr><tr><td>
+                <label for="pass" class="c_label">Password</label></td><td>
+                <input type="password" class="c_text" id="pass" name="pass" value="">
+            </td></tr><tr><td>
+                <label for="gender" class="c_label">Sex</label></td><td>
+                <input type="text" class="c_text" id="gender" name="gender" value="" placeholder="Gender">
+            </td></tr><tr><td>
+                <label for="dob" class="c_label">DOB</label></td><td>
+                <input type="text"  class="c_text" id="dob" name="dob" value="" placeholder="Date of Birth(DD-MM-YY)">
+            </td></tr><tr><td></td><td id="signup_button">
+                &nbsp;&nbsp;&nbsp;<input type="submit" class="c_button" value="Sign Up" id="submit" name="submit">
+                <input type="reset" class="c_button" value="Reset" id="reset" name="reset">
+             </td></tr>    
+        </table>
+        </form> 
+    </td></tr>
+</table>
+</body>
+</html>
